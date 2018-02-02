@@ -37,7 +37,7 @@
                 android:id="@+id/tab_bill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/bill02" />
+                android:icon="@drawable/bill01" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tab_receipt"
