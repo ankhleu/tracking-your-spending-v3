@@ -1,16 +1,23 @@
 package com.example.ankhleu.trackingyourspendingv3;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +34,15 @@ public class Tripadddetail extends AppCompatActivity {
     Spinner sp1,sp2; //項目 幣別
     private int mYear, mMonth, mDay;//時間單位
     public static String time ;
+    public int money;
+    public String note;
+    public String subject;
+    public String Currency;
+
+
+
+    public String[][] data={{"1","time","subject","money","note"}};
+
 
     public void time(String time)
     {
@@ -37,6 +53,7 @@ public class Tripadddetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tripadddetail);
+
         tv1 = findViewById(R.id.textView);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dt = new Date();
@@ -52,7 +69,12 @@ public class Tripadddetail extends AppCompatActivity {
         ArrayAdapter<CharSequence> curList = ArrayAdapter.createFromResource(this,
                 R.array.currency,android.R.layout.simple_list_item_1);
         sp2.setAdapter(curList);
+
+
+
     }
+
+
     public void clicktime(View v) //改時間
     {
         showDatePickerDialog();
@@ -79,6 +101,9 @@ public class Tripadddetail extends AppCompatActivity {
 
 
     }
+
+
+
     public void clickgo(View v)
     {
         ed1 = findViewById(R.id.editText7);
@@ -86,6 +111,8 @@ public class Tripadddetail extends AppCompatActivity {
         tv1 = findViewById(R.id.textView);
         sp1 = findViewById(R.id.pick);
         sp2 = findViewById(R.id.spinner2);
+
+
 //        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {  //監聽他選了哪個
 //            @Override
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,16 +125,33 @@ public class Tripadddetail extends AppCompatActivity {
 //            }
 //        });
 
-        int money = Integer.valueOf(ed1.getText().toString());
-        String note = ed2.getText().toString();
-        //String time = tv1.getText().toString();  //抓時間很奇怪
-        time = tv1.getText().toString();  //抓時間很奇怪
-        String subject =sp1.getSelectedItem().toString();
-        String Currency =sp2.getSelectedItem().toString();
+    money = Integer.valueOf(ed1.getText().toString());
+    note = ed2.getText().toString();
+    //String time = tv1.getText().toString();  //抓時間很奇怪
+    time = tv1.getText().toString();  //抓時間很奇怪
+    subject =sp1.getSelectedItem().toString();
+    Currency =sp2.getSelectedItem().toString();
 
-        MainActivity.dao2.add(new tripadd_constructor(time,money,subject,Currency,note));
+    MainActivity.dao2.add(new tripadd_constructor(time,money,subject,Currency,note));
+
+
+     ListView listView=(ListView)findViewById(R.id.listview);
+
+
+     LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    ViewAdapter adapter=new ViewAdapter(data,inflater);
+    adapter.notifyDataSetChanged();
+    if (listView != null) {    //老師這裡下if listview=null,執行adapter
+        listView.setAdapter(adapter);
+    }
+
+
+
         finish();
     }
+
+
     public void clickno(View v)
     {
         finish();

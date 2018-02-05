@@ -20,6 +20,7 @@ import com.example.ankhleu.trackingyourspendingv3.tripdata.tripadd;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -32,10 +33,16 @@ import java.util.Calendar;
  */
 public class FragmentBill extends Fragment implements View.OnClickListener
 {
-    View view;
+
     TextView tv3;
     FloatingActionButton fb1,fb2,fb3;
     ListView lv;
+    public static String time ;
+    public int money;
+    public String note;
+    public String subject;
+    public String[][] data={{"1","time","subject","money","note"}};
+
 
 
 
@@ -45,8 +52,8 @@ public class FragmentBill extends Fragment implements View.OnClickListener
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public String mParam1;
+    public String mParam2;
 
     private OnFragmentInteractionListener mListener;
     private ViewGroup rootView;
@@ -93,34 +100,58 @@ public class FragmentBill extends Fragment implements View.OnClickListener
     }
 
 
+    @Override
+    public void onResume() {  //增加onResume然後下方設定lv.setAdapter
+        super.onResume();
+
+        lv=(ListView)getActivity().findViewById(R.id.listview);
+        ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
+                (getActivity(),android.R.layout.simple_list_item_1,getData());
+        lv.setAdapter(arrayAdapter);
 
 
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+/*
+       View view=inflater.inflate(R.layout.activity_newstart,container,false);
+       lv=(ListView)getActivity().findViewById(R.id.listview);
+       ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
+               (getActivity(),android.R.layout.simple_list_item_1,getData());
+       lv.setAdapter(arrayAdapter);
+       return view;    //測試抓data
 
-//        view=inflater.inflate(R.layout.activity_startact,container,false);
-//        fb1=(FloatingActionButton)view.findViewById(R.id.floatingActionButton);
-//        fb1.setOnClickListener(this);
-//        return view;
+
+*/
+
+
+
 
         return inflater.inflate(R.layout.fragment_bill, container, false);
         // Inflate the layout for this fragment
 
 
 
-/*
-    rootView = (ViewGroup) inflater.inflate(R.layout.fragment_fragment_bill, container, false);
-        Button fb1 = (Button) rootView.findViewById(R.id.floatingActionButton);
-        fb1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-            }
-        });
-        return rootView;        //此段目前先不用
-*/
     }
+
+
+    public List<String>getData()
+    {
+        List<String>data=new ArrayList<String>();
+
+        for (int i=0;i <20;i++)
+        {
+            data.add(i+"");
+        }
+        return data;  //測試抓data
+
+    }
+
+
 
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
@@ -128,6 +159,8 @@ public class FragmentBill extends Fragment implements View.OnClickListener
        fb1 = (FloatingActionButton) getActivity().findViewById(R.id.floatingActionButton3);
         fb2 = (FloatingActionButton) getActivity().findViewById(R.id.floatingActionButton2);
         fb3 = (FloatingActionButton) getActivity().findViewById(R.id.floatingActionButton);
+
+
 
 
         fb1.setOnClickListener(
@@ -153,9 +186,11 @@ public class FragmentBill extends Fragment implements View.OnClickListener
 
             }
         });
-
 */
+
     }
+
+
 
 
 
@@ -171,6 +206,8 @@ public class FragmentBill extends Fragment implements View.OnClickListener
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -190,6 +227,7 @@ public class FragmentBill extends Fragment implements View.OnClickListener
     public void onClick(View view) {
 
     }
+
 
 
 /*
