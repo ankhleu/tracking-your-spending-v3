@@ -110,7 +110,6 @@ public class FragmentBill extends Fragment implements View.OnClickListener
         lv.setAdapter(arrayAdapter);
 
 
-
     }
 
     @Override

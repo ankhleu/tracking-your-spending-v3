@@ -72,6 +72,8 @@ public class Tripadddetail extends AppCompatActivity {
 
 
 
+
+
     }
 
 
@@ -104,8 +106,7 @@ public class Tripadddetail extends AppCompatActivity {
 
 
 
-    public void clickgo(View v)
-    {
+    public void clickgo(View v) {
         ed1 = findViewById(R.id.editText7);
         ed2 = findViewById(R.id.editText3);
         tv1 = findViewById(R.id.textView);
@@ -125,24 +126,28 @@ public class Tripadddetail extends AppCompatActivity {
 //            }
 //        });
 
-    money = Integer.valueOf(ed1.getText().toString());
-    note = ed2.getText().toString();
-    //String time = tv1.getText().toString();  //抓時間很奇怪
-    time = tv1.getText().toString();  //抓時間很奇怪
-    subject =sp1.getSelectedItem().toString();
-    Currency =sp2.getSelectedItem().toString();
+        money = Integer.valueOf(ed1.getText().toString());
+        note = ed2.getText().toString();
+        //String time = tv1.getText().toString();  //抓時間很奇怪
+        time = tv1.getText().toString();  //抓時間很奇怪
+        subject = sp1.getSelectedItem().toString();
+        Currency = sp2.getSelectedItem().toString();
 
-    MainActivity.dao2.add(new tripadd_constructor(time,money,subject,Currency,note));
-
-
-     ListView listView=(ListView)findViewById(R.id.listview);
+        MainActivity.dao2.add(new tripadd_constructor(time, money, subject, Currency, note));
 
 
-     LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ListView listView = (ListView) findViewById(R.id.listview);
 
-    ViewAdapter adapter=new ViewAdapter(data,inflater);
-    adapter.notifyDataSetChanged();
-    if (listView != null) {    //老師這裡下if listview=null,執行adapter
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        ViewAdapter adapter = new ViewAdapter(data, inflater);
+        adapter.notifyDataSetChanged();
+//        listView.setAdapter(adapter);
+//        finish();
+
+//    }
+   if (listView != null) {    //老師這裡下if listview=null,執行adapter
         listView.setAdapter(adapter);
     }
 

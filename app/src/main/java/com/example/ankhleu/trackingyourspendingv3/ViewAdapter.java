@@ -29,7 +29,7 @@ public class ViewAdapter extends BaseAdapter {
     {
         this.ElementsData=data;
         this.inflater=inflater;
-        indentionBase=100;
+      //  indentionBase=100;
     }
 
 
