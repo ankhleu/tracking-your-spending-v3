@@ -1,5 +1,6 @@
 package com.example.ankhleu.trackingyourspendingv3;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class ViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder;
-        if (convertView==null)
+        if (convertView!=null)
         {
             holder=new ViewHolder();
             convertView=inflater.inflate(R.layout.bill_listview,null);
@@ -66,16 +67,26 @@ public class ViewAdapter extends BaseAdapter {
             holder.note=(TextView)convertView.findViewById(R.id.tvnote);
             holder.rlBorder=(LinearLayout)convertView.findViewById(R.id.llBorder);
             convertView.setTag(holder);
+//            holder.time.setText(ElementsData[position][0]);
+//            holder.subject.setText(ElementsData[position][1]);
+//            holder.money.setText(ElementsData[position][2]);
+//            holder.note.setText(ElementsData[position][3]);
+            Log.d("holder time","0");
         }
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        if (ElementsData[position][0].equals("1"))
+        holder.time.setText(ElementsData[position][1]);
+        holder.subject.setText(ElementsData[position][2]);
+        holder.money.setText(ElementsData[position][2]);
+        holder.note.setText(ElementsData[position][4]);
+        Log.d("holdertime","0" + ElementsData[position][0]); //Log.d+直接顯示資料tag,後面貼上想要出現的數值
+        /*        if (ElementsData[position][0].equals("1"))
         {
-            holder.time.setText(ElementsData[position][0]);
-            holder.subject.setText(ElementsData[position][1]);
-            holder.money.setText(ElementsData[position][2]);
-            holder.note.setText(ElementsData[position][3]);
+            holder.time.setText(ElementsData[position][1]);
+        holder.subject.setText(ElementsData[position][2]);
+        holder.money.setText(ElementsData[position][2]);
+        holder.note.setText(ElementsData[position][4]);
         }
 
         else
@@ -83,7 +94,7 @@ public class ViewAdapter extends BaseAdapter {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.rlBorder.getLayoutParams();
             //lp.setMargins(indentionBase,0, 0,0);//縮牌
         }
-
+*/
         return convertView;
       //  return null;
     }

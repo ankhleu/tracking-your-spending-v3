@@ -15,7 +15,7 @@ public class tripadd_constructor {
 
     public tripadd_constructor(String date,int money,String subject,String currency,String note)
     {
-        //this.id = id ;
+        this.id = id ;
         this.date = date;
         this.money = money;
         this.subject = subject;

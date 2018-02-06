@@ -28,7 +28,7 @@ public class tripadd implements tripDAO {
     public boolean add(trip_constructor t)  //增加資料細項
     {
         ContentValues cv = new ContentValues();
-        cv.put("_id",t.id);
+       // cv.put("_id",t.id);
         cv.put("Title",t.title);
         cv.put("startdate",t.startdate);
         cv.put("enddate",t.enddate);
@@ -44,11 +44,11 @@ public class tripadd implements tripDAO {
         if(c.moveToFirst())
         {
             //用於獲取指定欄位名稱的int 型別的值
-            trip_constructor t1 = new trip_constructor(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4));
+            trip_constructor t1 = new trip_constructor(c.getString(0),c.getString(1),c.getString(2),c.getInt(3));
             mytrip.add(t1);
             while (c.moveToFirst())
             {
-                trip_constructor t = new trip_constructor(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4));
+                trip_constructor t = new trip_constructor(c.getString(0),c.getString(1),c.getString(2),c.getInt(3));
                 mytrip.add(t);
             }
         }
@@ -60,7 +60,7 @@ public class tripadd implements tripDAO {
         Cursor c =db.query("trip", new String[]{"_id","Title","startdate","enddate","budget"},"_id=?",new String[]{String.valueOf(id)},null,null,null);
         if(c.moveToFirst())
         {
-            trip_constructor t1 = new trip_constructor(c.getInt(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5));
+            trip_constructor t1 = new trip_constructor(c.getString(0),c.getString(1),c.getString(2),c.getInt(3));
             return  t1;
         }
         return null;

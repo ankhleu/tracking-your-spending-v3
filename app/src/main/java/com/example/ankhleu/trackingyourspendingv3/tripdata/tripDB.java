@@ -21,9 +21,11 @@ public class tripDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE \"trip\" ( `_id` INTEGER NOT NULL PRIMARY KEY , `Title` TEXT, `startdate` TEXT, `enddate` TEXT, `budget` INTEGER )");
+        db.execSQL("CREATE TABLE \"trip\" ( `_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `Title` TEXT, `startdate` TEXT, `enddate` TEXT, `budget` INTEGER )");
         db.execSQL("CREATE TABLE \"tripdetail\" ( `_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `money` INTEGER, `_date` TEXT, `subject` TEXT, `Currency` TEXT, `note` TEXT )");
-        db.execSQL("SElECT*FROM tripdetail LEFT OUTER JOIN trip ON tripdetail._date=trip.enddate");//用join方法產生關聯（失敗）
+       // db.execSQL("SELECT*FROM tripdetail LEFT OUTER JOIN trip ON tripdetail._date=trip.enddate");//用join方法產生關聯（失敗）
+        // SQLite trip id是否應該改為AI自動生成?
+        //db.execSQL("SELECT ('now')-");
     }
 
     @Override

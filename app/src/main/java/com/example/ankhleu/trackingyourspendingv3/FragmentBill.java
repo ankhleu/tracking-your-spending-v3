@@ -105,8 +105,14 @@ public class FragmentBill extends Fragment implements View.OnClickListener
         super.onResume();
 
         lv=(ListView)getActivity().findViewById(R.id.listview);
-        ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
+        final ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
                 (getActivity(),android.R.layout.simple_list_item_1,getData());
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
         lv.setAdapter(arrayAdapter);
 
 

@@ -1,11 +1,14 @@
 package com.example.ankhleu.trackingyourspendingv3;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ankhleu.trackingyourspendingv3.tripdata.trip_constructor;
@@ -17,6 +20,7 @@ public class Newstart extends AppCompatActivity {
     EditText ed, ed2;
     TextView str, end, bud;
     private int mYear, mMonth, mDay; //時間單位
+    public String[][] data={{"1","id","startdate","endate","budget"}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,18 +84,24 @@ public class Newstart extends AppCompatActivity {
     public void CL1(View v) {
 
         ed = findViewById(R.id.editText2);
-        ed2 = findViewById(R.id.editText);
+       // ed2 = findViewById(R.id.editText);
         str = findViewById(R.id.startday);
         end = findViewById(R.id.endday);
         bud = findViewById(R.id.editText9);
 
         String title = ed.getText().toString();
-        int id = Integer.valueOf(ed2.getText().toString());
+       // int id = Integer.valueOf(ed2.getText().toString());
         String startdate = str.getText().toString();//抓選好後的開始時間
         String enddate = end.getText().toString(); //抓選好後的結束時間
         int budget = Integer.valueOf(bud.getText().toString()); //抓填入的預算金額
 
-        MainActivity.dao.add(new trip_constructor(id, title, startdate, enddate, budget));
+        MainActivity.dao.add(new trip_constructor(title, startdate, enddate, budget));
+
+        ListView listView = (ListView) findViewById(R.id.listview);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        ViewAdapter adapter = new ViewAdapter(data, inflater);
+        adapter.notifyDataSetChanged();
 
         finish();
     }

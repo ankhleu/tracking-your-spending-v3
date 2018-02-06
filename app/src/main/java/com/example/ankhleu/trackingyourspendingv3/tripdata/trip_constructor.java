@@ -15,9 +15,9 @@ public class trip_constructor {
     public int budget; //預算
 
 
-    public trip_constructor( int id, String title,String startdate,String enddate,int budget)
+    public trip_constructor(String title,String startdate,String enddate,int budget)
     {
-        this.id = id ;
+       // this.id = id ;
         this.title = title ;
         this.startdate = startdate ;
         this.enddate=enddate ;
