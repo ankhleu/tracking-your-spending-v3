@@ -3,6 +3,7 @@ package com.example.ankhleu.trackingyourspendingv3;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -42,6 +43,7 @@ public class FragmentBill extends Fragment implements View.OnClickListener
     public String note;
     public String subject;
     public String[][] data={{"1","time","subject","money","note"}};
+    public SQLiteDatabase DB;
 
 
 
@@ -105,15 +107,26 @@ public class FragmentBill extends Fragment implements View.OnClickListener
         super.onResume();
 
         lv=(ListView)getActivity().findViewById(R.id.listview);
-        final ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
-                (getActivity(),android.R.layout.simple_list_item_1,getData());
+        final ViewAdapter viewAdapter=new ViewAdapter(data,getLayoutInflater());
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                arrayAdapter.notifyDataSetChanged();
+                viewAdapter.notifyDataSetChanged();
+//                DB.execSQL();
             }
         });
-        lv.setAdapter(arrayAdapter);
+        lv.setAdapter(viewAdapter);
+
+//        final ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>
+//                (getActivity(),android.R.layout.simple_list_item_1,getData());
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                arrayAdapter.notifyDataSetChanged();
+//            }
+//        });
+//        lv.setAdapter(arrayAdapter);
+ //       SELECT FROM tripDetail where money BETWEEN startdate and enddate
 
 
     }

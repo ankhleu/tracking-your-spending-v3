@@ -8,7 +8,9 @@ public class trip_constructor {
 
     //這邊放有活動中的建構式
 
-    public int id; //活動id
+    //public int id; //活動id
+    public static int id; //活動id
+
     public String title; // 標題
     public String startdate;// 旅遊開始時間
     public String enddate;//   旅遊結束時間

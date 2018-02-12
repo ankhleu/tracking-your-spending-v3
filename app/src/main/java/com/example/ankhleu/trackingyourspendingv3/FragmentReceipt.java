@@ -1,12 +1,15 @@
 package com.example.ankhleu.trackingyourspendingv3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -26,6 +29,7 @@ public class FragmentReceipt extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public Button bt;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,6 +69,20 @@ public class FragmentReceipt extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_receipt, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        bt=(Button)getActivity().findViewById(R.id.button4);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(getActivity(),PhotoActivity.class);
+                startActivity(it);
+            }
+        });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

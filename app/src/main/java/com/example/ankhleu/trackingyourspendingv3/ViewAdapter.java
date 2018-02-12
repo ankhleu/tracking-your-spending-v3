@@ -57,7 +57,7 @@ public class ViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder;
-        if (convertView!=null)
+        if (convertView==null)
         {
             holder=new ViewHolder();
             convertView=inflater.inflate(R.layout.bill_listview,null);
